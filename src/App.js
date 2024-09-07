@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Container, Box, Typography } from '@mui/material';
+import ActivityForm from './ActivityForm';
+import Dashboard from './Dashboard';
 
 function App() {
+  const [activities, setActivities] = useState([]);
+
+  const addActivity = (activity) => {
+    setActivities([...activities, activity]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Box my={4}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Fitness Challenge Tracker
+        </Typography>
+        <ActivityForm addActivity={addActivity} />
+        <Dashboard activities={activities} />
+      </Box>
+    </Container>
   );
 }
 
